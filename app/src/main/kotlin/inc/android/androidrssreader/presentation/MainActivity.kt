@@ -1,7 +1,8 @@
-package inc.android.androidrssreader
+package inc.android.androidrssreader.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import inc.android.androidrssreader.R
 
 class MainActivity : AppCompatActivity() {
 

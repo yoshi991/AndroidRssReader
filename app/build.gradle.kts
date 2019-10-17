@@ -174,6 +174,9 @@ dependencies {
         impl(core)
         impl(converter)
     }
+    Deps.Square.SimpleXML.run {
+        impl(simpleXml)
+    }
 
     Deps.Glide.run {
         impl(core)

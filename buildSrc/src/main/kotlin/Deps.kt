@@ -72,6 +72,11 @@ object Deps {
             const val core = "com.squareup.retrofit2:retrofit:$version"
             const val converter = "com.squareup.retrofit2:converter-gson:2.4.0"
         }
+
+        object SimpleXML {
+            const val version = "2.6.2"
+            const val simpleXml = "com.squareup.retrofit2:converter-simplexml:$version"
+        }
     }
 
     object Groupie {
