@@ -13,7 +13,7 @@ references:
       - image: circleci/android:api-28
 
   gradle_cache_key: &gradle_cache_key
-    key: jars-{{ checksum "build.gradle.kts.kts" }}-{{ checksum  "app/build.gradle.kts.kts" }}-{{ checksum  "buildSrc/build.gradle.kts.kts" }}-{{ checksum  "buildSrc/src/main/kotlin/Deps.kt" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+    key: jars-{{ checksum "build.gradle.kts.kts.kts" }}-{{ checksum  "app/build.gradle.kts.kts.kts" }}-{{ checksum  "buildSrc/build.gradle.kts.kts.kts" }}-{{ checksum  "buildSrc/src/main/kotlin/Deps.kt" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
 
   gradle_restore_cache: &gradle_restore_cache
     restore_cache:
