@@ -1,0 +1,117 @@
+# Java Gradle CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-android/ for more details
+#
+version: 2.1
+
+references:
+  workspace: &workspace
+               ~/workspace
+
+  docker-image: &docker-image
+    docker:
+      - image: circleci/android:api-28
+
+  gradle_cache_key: &gradle_cache_key
+    key: jars-{{ checksum "build.gradle.kts.kts" }}-{{ checksum  "app/build.gradle.kts.kts" }}-{{ checksum  "buildSrc/build.gradle.kts.kts" }}-{{ checksum  "buildSrc/src/main/kotlin/Deps.kt" }}-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}
+
+  gradle_restore_cache: &gradle_restore_cache
+    restore_cache:
+      <<: *gradle_cache_key
+
+  gradle_save_cache: &gradle_save_cache
+    save_cache:
+      <<: *gradle_cache_key
+      paths:
+        - ~/.gradle/caches
+        - ~/.gradle/wrapper
+
+  persist_to_workspace: &persist_to_workspace
+    persist_to_workspace:
+      root: .
+      paths:
+        - .
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: *workspace
+
+executors:
+  android_medium:
+    <<: *docker-image
+    resource_class: medium+
+    working_directory: *workspace
+    environment:
+      _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      JAVA_TOOL_OPTIONS: "-Xmx3g"
+      GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=2 -Dkotlin.incremental=false'
+
+  android_large:
+    <<: *docker-image
+    resource_class: large
+    working_directory: *workspace
+    environment:
+      _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      JAVA_TOOL_OPTIONS: "-Xmx4g"
+      GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=4 -Dkotlin.incremental=false'
+
+  android_xlarge:
+    <<: *docker-image
+    resource_class: xlarge
+    working_directory: *workspace
+    environment:
+      _JAVA_OPTIONS: "-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+      JAVA_TOOL_OPTIONS: "-Xmx8g"
+      GRADLE_OPTS: '-Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dorg.gradle.workers.max=8 -Dkotlin.incremental=false'
+
+jobs:
+  setup:
+    executor: android_medium
+    steps:
+      - checkout
+      - *persist_to_workspace
+
+  build:
+    executor: android_xlarge
+    steps:
+      - *attach_workspace
+      - *gradle_restore_cache
+
+      - run:
+          name: Run Build
+          command: ./gradlew assembleDebug
+
+      - *gradle_save_cache
+
+  lint:
+    executor: android_medium
+    steps:
+      - *attach_workspace
+      - *gradle_restore_cache
+
+      - run:
+          name: Run Ktlint
+          command: ./gradlew ktlint
+
+      - run: bundle check --path=vendor/bundle || bundle install --path vendor/bundle --jobs=4 --retry=3
+      - run:
+          name: Run Danger
+          command: bundle exec danger
+
+      - *gradle_save_cache
+      - *persist_to_workspace
+
+      - store_artifacts:
+          path: app/build/reports
+          destination: reports
+
+
+workflows:
+  build:
+    jobs:
+      - setup
+      - build:
+          requires:
+            - setup
+      - lint:
+          requires:
+            - setup
