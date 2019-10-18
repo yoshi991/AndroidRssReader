@@ -6,6 +6,8 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import inc.android.androidrssreader.data.di.ApiModule
+import inc.android.androidrssreader.data.di.RepositoryModule
+import inc.android.androidrssreader.domain.di.DomainModule
 import inc.android.androidrssreader.presentation.di.ActivityModule
 import inc.android.androidrssreader.presentation.di.ViewModelFactoryModule
 import javax.inject.Singleton
@@ -16,6 +18,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         ActivityModule::class,
         ApiModule::class,
+        RepositoryModule::class,
+        DomainModule::class,
         ViewModelFactoryModule::class
     ]
 )
