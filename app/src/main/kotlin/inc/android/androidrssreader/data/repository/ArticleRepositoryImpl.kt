@@ -9,7 +9,7 @@ class ArticleRepositoryImpl
 constructor(
     private val api: API
 ) : ArticleRepository {
-    override suspend fun <T> fetchArticles(uri: String): List<T> {
-        return api.fetchArticles<T>(uri)
+    override suspend fun <T> fetchArticles(uri: String): T {
+        return api.fetchArticles(uri)
     }
 }
