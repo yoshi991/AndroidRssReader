@@ -7,7 +7,6 @@ import inc.android.androidrssreader.presentation.view.base.view_model.ViewModelF
 
 @Module
 abstract class ViewModelFactoryModule {
-
     @Binds
     internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
