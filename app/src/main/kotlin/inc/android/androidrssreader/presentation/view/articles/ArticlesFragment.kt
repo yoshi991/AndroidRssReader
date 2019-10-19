@@ -49,11 +49,13 @@ class ArticlesFragment : BaseFragment() {
             tab.text = getString(Articles.values()[position].title)
         }.attach()
 
-        for (i in Articles.values().indices) {
-            items.add(ArticlesItem(emptyList()) {
-                val link = it.link ?: return@ArticlesItem
-                findNavController().navigate(ArticlesFragmentDirections.actionArticlesToWebview(link))
-            })
+        if (items.isEmpty()) {
+            for (i in Articles.values().indices) {
+                items.add(ArticlesItem(emptyList()) {
+                    val link = it.link ?: return@ArticlesItem
+                    findNavController().navigate(ArticlesFragmentDirections.actionArticlesToWebview(link))
+                })
+            }
         }
         adapter.updateAsync(items)
 
