@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProviders
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -50,7 +51,8 @@ class ArticlesFragment : BaseFragment() {
 
         for (i in Articles.values().indices) {
             items.add(ArticlesItem(emptyList()) {
-                // TODO: navigate detail fragment
+                val link = it.link ?: return@ArticlesItem
+                findNavController().navigate(ArticlesFragmentDirections.actionArticlesToWebview(link))
             })
         }
         adapter.updateAsync(items)

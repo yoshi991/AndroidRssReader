@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/color_accent</item>
+        <item name="android:textColorPrimary">@color/white</item>
     </style>
 
     <style name="Widget.App.Toolbar" parent="ThemeOverlay.AppCompat.ActionBar">

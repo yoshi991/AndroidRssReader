@@ -12,6 +12,23 @@
         android:name="inc.android.androidrssreader.presentation.view.articles.ArticlesFragment"
         android:label="@string/nav_articles"
         tools:layout="@layout/fragment_articles"
-        />
+        >
+        <action
+            android:id="@+id/action_articles_to_webview"
+            app:destination="@id/webview"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/webview"
+        android:name="inc.android.androidrssreader.presentation.view.webview.WebViewFragment"
+        android:label="@string/nav_article_detail"
+        tools:layout="@layout/fragment_webview"
+        >
+        <argument
+            android:name="uri"
+            app:argType="string"
+            />
+    </fragment>
 
 </navigation>

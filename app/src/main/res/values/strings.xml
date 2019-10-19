@@ -2,6 +2,7 @@
     <string name="app_name">AndroidRSSReader</string>
 
     <string name="nav_articles">記事一覧</string>
+    <string name="nav_article_detail">記事詳細</string>
 
     <string name="article_general">総合</string>
     <string name="article_world">世の中</string>
