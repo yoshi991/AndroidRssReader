@@ -4,4 +4,7 @@
     <string name="nav_articles">記事一覧</string>
 
     <string name="article_general">総合</string>
+    <string name="article_world">世の中</string>
+    <string name="article_politics_and_economy">政治と経済</string>
+    <string name="article_living">暮らし</string>
 </resources>

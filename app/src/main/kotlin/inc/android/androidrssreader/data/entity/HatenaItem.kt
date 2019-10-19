@@ -29,7 +29,7 @@ class HatenaItem {
     var bookmarkcount: Int = -1
 
     @Path("hatena/imageurl")
-    @set:Element
-    @get:Element
+    @set:Element(required = false)
+    @get:Element(required = false)
     var imageurl: String? = null
 }

@@ -1,6 +1,7 @@
 package inc.android.androidrssreader.presentation.view.articles
 
-import inc.android.androidrssreader.data.entity.HatenaRSS
+import androidx.lifecycle.LiveData
+import inc.android.androidrssreader.data.entity.HatenaArticles
 import inc.android.androidrssreader.domain.use_case.ArticleUseCase
 import inc.android.androidrssreader.presentation.view.base.BaseViewModel
 import inc.android.androidrssreader.util.extension.mutableLiveDataOf
@@ -13,12 +14,13 @@ constructor(
     private val articleUseCase: ArticleUseCase
 ) : BaseViewModel() {
 
-    private val _general = mutableLiveDataOf<HatenaRSS>()
+    private val _article = mutableLiveDataOf<HatenaArticles>()
+    val article: LiveData<HatenaArticles> = _article
 
-    fun getGeneralArticle() {
+    fun getArticles(position: Int) {
         coroutineScope.launch {
-            articleUseCase.getGeneral()
-                .onSuccess { _general.postValue(it) }
+            articleUseCase.getArticles(position)
+                .onSuccess { _article.postValue(it) }
                 .onFailure { onError(it) }
         }
     }
