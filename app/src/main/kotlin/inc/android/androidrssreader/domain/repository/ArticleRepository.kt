@@ -1,5 +1,7 @@
 package inc.android.androidrssreader.domain.repository
 
+import inc.android.androidrssreader.data.entity.HatenaRSS
+
 interface ArticleRepository {
-    suspend fun <T> fetchArticles(uri: String): T
+    suspend fun fetchArticles(uri: String): HatenaRSS
 }

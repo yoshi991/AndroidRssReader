@@ -32,7 +32,7 @@ object ApiModule {
     @Singleton
     fun provideApi(httpClient: OkHttpClient): API {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("http://b.hatena.ne.jp/")
             .addConverterFactory(SimpleXmlConverterFactory.create())
             .client(httpClient)
             .build()

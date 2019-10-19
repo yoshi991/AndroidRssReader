@@ -9,6 +9,6 @@ enum class Articles(
 ) {
     GENERAL(
         R.string.article_general,
-        "http://b.hatena.ne.jp/hotentry.rss"
+        "https://b.hatena.ne.jp/hotentry.rss"
     )
 }
