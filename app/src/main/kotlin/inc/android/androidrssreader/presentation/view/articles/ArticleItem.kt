@@ -19,5 +19,6 @@ data class ArticleItem(
         } else {
             viewBinding.itemImage.visibility = View.VISIBLE
         }
+        viewBinding.root.setOnClickListener { onClick(article) }
     }
 }

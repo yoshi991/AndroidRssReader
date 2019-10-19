@@ -87,14 +87,18 @@ class ArticlesFragment : BaseFragment() {
         override fun getLayout(): Int = R.layout.item_articles
 
         override fun bind(viewBinding: ItemArticlesBinding, position: Int) {
-            (0 until viewBinding.recyclerView.itemDecorationCount)
+            if (items.isEmpty()) return
+
+            (0 until viewBinding.recyclerView.itemDecorationCount - 1)
                 .forEach(viewBinding.recyclerView::removeItemDecorationAt)
 
             layoutManager = GridLayoutManager(context, 2)
             viewBinding.recyclerView.layoutManager = layoutManager
             viewBinding.recyclerView.adapter = adapter
             viewBinding.recyclerView.setHasFixedSize(true)
-            adapter.update(items.map { ArticleItem(it) { onClick } })
+            viewBinding.top = items.first()
+            viewBinding.itemTop.root.setOnClickListener { onClick(items.first()) }
+            adapter.update(items.drop(1).map { ArticleItem(it, onClick) })
         }
     }
 }
