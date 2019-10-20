@@ -27,6 +27,7 @@
             <include
                 android:id="@+id/item_top"
                 layout="@layout/item_article_top"
+                android:visibility="gone"
                 bind:article="@{top}"
                 />
 

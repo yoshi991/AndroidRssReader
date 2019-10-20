@@ -100,6 +100,7 @@ class ArticlesFragment : BaseFragment() {
             viewBinding.recyclerView.layoutManager = layoutManager
             viewBinding.recyclerView.adapter = adapter
             viewBinding.recyclerView.setHasFixedSize(true)
+            viewBinding.itemTop.root.visibility = View.VISIBLE
             viewBinding.top = items.first()
             viewBinding.itemTop.root.setOnClickListener { onClick(items.first()) }
             adapter.update(items.drop(1).map { ArticleItem(it, onClick) })

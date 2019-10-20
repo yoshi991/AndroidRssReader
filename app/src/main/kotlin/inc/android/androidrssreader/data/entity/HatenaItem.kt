@@ -3,6 +3,8 @@ package inc.android.androidrssreader.data.entity
 import org.simpleframework.xml.Element
 import org.simpleframework.xml.Path
 import org.simpleframework.xml.Root
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
 
 @Root(name = "item", strict = false)
 class HatenaItem {
@@ -32,4 +34,12 @@ class HatenaItem {
     @set:Element(required = false)
     @get:Element(required = false)
     var imageurl: String? = null
+
+    val formattedDate: String
+        get() {
+            return LocalDateTime.parse(
+                this.date,
+                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            ).format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm"))
+        }
 }
