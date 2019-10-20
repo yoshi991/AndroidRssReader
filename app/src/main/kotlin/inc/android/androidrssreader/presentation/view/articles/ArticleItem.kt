@@ -19,6 +19,7 @@ data class ArticleItem(
         } else {
             viewBinding.itemImage.visibility = View.VISIBLE
         }
+        viewBinding.itemBookmarkCount.text = String.format("%,d", article.bookmarkcount)
         viewBinding.root.setOnClickListener { onClick(article) }
     }
 }

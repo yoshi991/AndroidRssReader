@@ -102,6 +102,7 @@ class ArticlesFragment : BaseFragment() {
             viewBinding.recyclerView.setHasFixedSize(true)
             viewBinding.itemTop.root.visibility = View.VISIBLE
             viewBinding.top = items.first()
+            viewBinding.itemTop.itemBookmarkCount.text = String.format("%,d", items.first().bookmarkcount)
             viewBinding.itemTop.root.setOnClickListener { onClick(items.first()) }
             adapter.update(items.drop(1).map { ArticleItem(it, onClick) })
         }

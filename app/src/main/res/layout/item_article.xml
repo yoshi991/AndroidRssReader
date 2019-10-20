@@ -90,6 +90,33 @@
                 />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_bookmark_count"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/gray"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/item_start"
+                app:layout_constraintTop_toBottomOf="@id/item_description"
+                tools:text="8,888"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_bookmark_count_unit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="2dp"
+                android:text="@string/article_item_bookmark_count_unit"
+                android:textColor="@color/gray"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/item_bookmark_count"
+                app:layout_constraintStart_toEndOf="@id/item_bookmark_count"
+                />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/item_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -98,9 +125,9 @@
                 android:text="@{article.formattedDate}"
                 android:textColor="@color/gray"
                 android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/item_bookmark_count"
                 app:layout_constraintEnd_toEndOf="@id/item_end"
-                app:layout_constraintTop_toBottomOf="@id/item_description"
+                app:layout_constraintTop_toTopOf="@id/item_bookmark_count"
                 tools:text="2019/10/19 02:39"
                 />
 

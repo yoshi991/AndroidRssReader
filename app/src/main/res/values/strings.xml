@@ -8,4 +8,6 @@
     <string name="article_world">世の中</string>
     <string name="article_politics_and_economy">政治と経済</string>
     <string name="article_living">暮らし</string>
+
+    <string name="article_item_bookmark_count_unit">人</string>
 </resources>
